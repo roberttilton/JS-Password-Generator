@@ -1,9 +1,9 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-var upperLetters = ['ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split()];
-var lowerLetters = ['abcdefghijklmnopqrstuvwxyz'.split()];
-var numbers = ['0123456789'.split()];
-var specialChars = ['!@#$%^&*()_+-=`~?/.>,<'.split()];
+var upperLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split();
+var lowerLetters = 'abcdefghijklmnopqrstuvwxyz'.split();
+var numbers = '0123456789'.split();
+var specialChars = '!@#$%^&*()_+-=`~?/.>,<'.split();
 var choices = "";
 
 // Write a function that allows us to prompt the user. Should be written in a function. 
@@ -12,15 +12,10 @@ function userpasswordOptions() {
   var passLength = parseInt(
     prompt('How many characters would you like your password to contain?')
   );
-  if (isNaN(passLength) === true) {
-    alert('Password length must be provided as a number.')
-    return;
-  }
   // After that prompt, we need a check to make sure they chose between 8- 128 characters
-  if (passLength < 8) {
-    alert('Password length must be more than 8 characters.');
-  } else if (passLength > 128) {
-    alert('Password length must be less than 128 characters.');
+  if (passLength < 8 || passLength > 128 || isNaN(passLength)) {
+    alert('Password length must be between 8 and 128 characters/a number.');
+    return 'Password length must be between 8 and 128 characters/a number.';
   }
   // Next we will prompt them for what characters they want. Will be a confirm prompt for all 4.
   var confirmUpper = confirm("Would you like to use uppercase letters?");
@@ -49,9 +44,10 @@ function userpasswordOptions() {
   }
   // need to make sure that the user picked at least one character type for password.
   if (!confirmUpper && !confirmLower && !confirmNum && !confirmSpec) {
-    alert('You need to pick at least one character type')
+    alert('You need to pick at least one character type');
+    return;
   }
-  return (choices);
+  
 }
 
 console.log(userpasswordOptions());
