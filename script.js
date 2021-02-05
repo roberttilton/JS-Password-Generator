@@ -4,37 +4,57 @@ var upperLetters = ['ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split()];
 var lowerLetters = ['abcdefghijklmnopqrstuvwxyz'.split()];
 var numbers = ['0123456789'.split()];
 var specialChars = ['!@#$%^&*()_+-=`~?/.>,<'.split()];
+var choices = "";
 
 // Write a function that allows us to prompt the user. Should be written in a function. 
 // In that function we are going to ask the user how many words we want the password to be. 
-function userpasswordOptions(){
+function userpasswordOptions() {
   var passLength = parseInt(
-      prompt('How many characters would you like your password to contain?')
+    prompt('How many characters would you like your password to contain?')
   );
   if (isNaN(passLength) === true) {
-      alert('Password length must be provided as a number.')
-      return;
+    alert('Password length must be provided as a number.')
+    return;
   }
-// After that prompt, we need a check to make sure they chose between 8- 128 characters
+  // After that prompt, we need a check to make sure they chose between 8- 128 characters
   if (passLength < 8) {
-      alert('Password length must be more than 8 characters.');
+    alert('Password length must be more than 8 characters.');
   } else if (passLength > 128) {
-      alert('Password length must be less than 128 characters.')
+    alert('Password length must be less than 128 characters.');
   }
+  // Next we will prompt them for what characters they want. Will be a confirm prompt for all 4.
+  var confirmUpper = confirm("Would you like to use uppercase letters?");
+  if (confirmUpper == true) {
+    choices = choices + confirmUpper
+  } else {
+    choices
+  }
+  var confirmLower = confirm("Would you like to use lowercase letters?");
+  if (confirmLower == true) {
+    choices = choices + confirmLower
+  } else {
+    choices
+  }
+  var confirmNum = confirm("Would you like to use numbers?");
+  if (confirmNum == true) {
+    choices = choices + confirmNum
+  } else {
+    choices
+  }
+  var confirmSpec = confirm("Would you like to use special characters?");
+  if (confirmSpec == true) {
+    choices = choices + confirmSpec
+  } else {
+    choices
+  }
+  // need to make sure that the user picked at least one character type for password.
+  if (!confirmUpper && !confirmLower && !confirmNum && !confirmSpec) {
+    alert('You need to pick at least one character type')
+  }
+  return (choices);
 }
-// Next we will prompt them for what characters they want. Will be a confirm prompt for all 4.
-userpasswordOptions();
-var confirmUpper = confirm("Would you like to use uppercase letters?");
-var confirmLower = confirm("Would you like to use lowercase letters?");
-var confirmNum = confirm("Would you like to use numbers?");
-var confirmSpec = confirm("Would you like to use special characters?");
-// need to make sure that the user picked at least one character type for password.
 
-
-
-// We now need an object to store the user input- meaning the length, what characters will be used in password.
-
-
+console.log(userpasswordOptions());
 
 // we will now return the object- we will now know what will be the possible choices.
 
