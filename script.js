@@ -1,9 +1,9 @@
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
-var upperLetters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split();
-var lowerLetters = 'abcdefghijklmnopqrstuvwxyz'.split();
-var numbers = '0123456789'.split();
-var specialChars = '!@#$%^&*()_+-=`~?/.>,<'.split();
+var upperLetters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split();
+var lowerLetters = "abcdefghijklmnopqrstuvwxyz".split();
+var numbers = "0123456789".split();
+var specialChars = "!@#$%^&*()_+-=`~?/.>,<".split();
 var choices = "";
 
 // Write a function that allows us to prompt the user. Should be written in a function. 
@@ -20,45 +20,43 @@ function userpasswordOptions() {
   // Next we will prompt them for what characters they want. Will be a confirm prompt for all 4.
   var confirmUpper = confirm("Would you like to use uppercase letters?");
   if (confirmUpper == true) {
-    choices = choices + confirmUpper
+    choices = choices + upperLetters
   } else {
-    choices
+    choices = choices
   }
   var confirmLower = confirm("Would you like to use lowercase letters?");
   if (confirmLower == true) {
-    choices = choices + confirmLower
+    choices = choices + lowerLetters
   } else {
-    choices
+    choices = choices
   }
   var confirmNum = confirm("Would you like to use numbers?");
   if (confirmNum == true) {
-    choices = choices + confirmNum
+    choices = choices + numbers
   } else {
-    choices
+    choices = choices
   }
   var confirmSpec = confirm("Would you like to use special characters?");
   if (confirmSpec == true) {
-    choices = choices + confirmSpec
+    choices = choices + specialChars
   } else {
-    choices
+    choices = choices
   }
   // need to make sure that the user picked at least one character type for password.
   if (!confirmUpper && !confirmLower && !confirmNum && !confirmSpec) {
     alert('You need to pick at least one character type');
     return;
   }
-  
+//After we have user inputs, we want to write a function to randomize the letters inside that we can give the password  (will use math.random to generate that).
+  var password = [];
+  for (var i = 0; i < passLength; i++) {
+    var choicesTogether = choices[Math.floor(Math.random() * choices.length)]
+    password.push(choicesTogether);
+  }
 }
 
-console.log(userpasswordOptions());
-
-// we will now return the object- we will now know what will be the possible choices.
-
-
-
-//After we have user inputs, we want to write a function to randomize the letters inside that we can give the password  (will use math.random to generate that).
-
-
+userpasswordOptions();
+console.log(choices);
 
 // Then we will creat another function- make an array w the results, an array for possible characters, 
 // and set an array for guarenteed characters (characters guarenteed for pw)
